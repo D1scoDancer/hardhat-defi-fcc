@@ -1,4 +1,8 @@
-async function main() {}
+const { getWETH } = require("./getWETH")
+
+async function main() {
+    await getWETH()
+}
 
 main()
     .then(() => process.exit(0))
