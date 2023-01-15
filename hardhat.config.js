@@ -14,7 +14,14 @@ const MAINNET_RPC_URL = process.env.MAINNET_RPC_URL || "key"
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-    solidity: { compilers: [{ version: "0.8.17" }, { version: "0.6.12" }, { version: "0.4.19" }] },
+    solidity: {
+        compilers: [
+            { version: "0.8.17" },
+            { version: "0.6.12" },
+            { version: "0.4.19" },
+            { version: "0.6.6" },
+        ],
+    },
     defaultNetwork: "hardhat",
     networks: {
         hardhat: {
@@ -22,6 +29,7 @@ module.exports = {
             blockConfirmations: 1,
             forking: {
                 url: MAINNET_RPC_URL,
+                // blockNumber: 14390000,
             },
         },
         goerli: {

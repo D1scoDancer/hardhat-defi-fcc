@@ -18,4 +18,4 @@ async function getWETH() {
     console.log(`Got ${wethBalance.toString()} WETH`)
 }
 
-module.exports = { getWETH }
+module.exports = { getWETH, AMOUNT }
