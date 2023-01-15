@@ -13,9 +13,23 @@ async function main() {
     /* Approve */
     await approveERC20(wethTokenAddress, lendingPool.address, AMOUNT, deployer)
     console.log("Depositing..")
-    // await lendingPool.deposit(wethTokenAddress, AMOUNT, lendingPool.address, 0)
     await lendingPool.deposit(wethTokenAddress, AMOUNT, deployer, 0)
     console.log("Deposited!")
+
+    let { availableBorrowETH, totalDeptETH } = await getBorrowUserData(lendingPool, deployer)
+    /* Borrow Time! */
+    // getUserAccountData(): how much we can borrow, how much collateral we have, etc..
+}
+
+async function getBorrowUserData(lendingPool, account) {
+    const { totalCollateralETH, totalDebtETH, availableBorrowsETH } =
+        await lendingPool.getUserAccountData(account)
+
+    console.log(`totalCollateralETH: ${totalCollateralETH}`)
+    console.log(`totalDeptETH: ${totalDebtETH}`)
+    console.log(`availableBorrowETH: ${availableBorrowsETH}`)
+
+    return { availableBorrowsETH, totalDebtETH }
 }
 
 async function getLendingPool(deployer) {
